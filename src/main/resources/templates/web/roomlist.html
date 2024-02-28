@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Room List</title>
+    <link rel="stylesheet" th:href="@{/web/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/web/css/fontawesome.css}"/>
+    <link rel="stylesheet" th:href="@{/web/css/templatemo-villa-agency.css}"/>
+    <link rel="stylesheet" th:href="@{/web/css/aos.css}"/>
+    <link rel="stylesheet" th:href="@{/web/css/animate.css}"/>
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+  </head>
+<body>
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <ul class="info">
+            <li><i class="fa fa-envelope"></i> info@company.com</li>
+            <li><i class="fa fa-map"></i> Sunny Isles Beach, FL 33160</li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <ul class="social-links">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+                    <div class="container">
+                      <a class="navbar-brand" href="trang-chu">Harbor<span>lights</span></a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="oi oi-menu"></span> Menu
+                      </button>
+            
+                      <div class="collapse navbar-collapse" id="ftco-nav">
+                        <ul class="navbar-nav ml-auto">
+                          <li class="nav-item active"><a href="trang-chu" class="nav-link">Home</a></li>
+                          <li class="nav-item"><a href="roomlist" class="nav-link">Our Rooms</a></li>
+                          <li class="nav-item"><a href="restaurant.html" class="nav-link">Restaurant</a></li>
+                          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <span class="breadcrumb"><a href="#">Home</a> / Properties</span>
+          <h3>Properties</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section properties">
+    <div class="container">
+      <ul class="properties-filter">
+        <li>
+          <a class="is_active" href="#!" data-filter="*">Show All</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".adv">Apartment</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".str">Villa House</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".rac">Penthouse</a>
+        </li>
+      </ul>
+      <div class="row properties-box">
+        <div th:each="department : ${findAllDepartments}" class="col-lg-4 col-md-6 align-self-center mb-30 properties-items">
+            <div class="item">
+              <span class="category" th:text="${department.roomType}"></span>
+              <h6 th:text="${department.price}">Giá</h6>
+              <h4><a th:text="${department.cityName}"></a></h4>
+              <ul>
+                <li>Số người tối đa:: <span th:text="${department.max_person}"></span></li>
+                <li>Tiện ích đi kèm: <span th:text="${department.amenities}"></span></li>
+                <li>Phong cách: <span th:text="${department.catergory}"></span></li>
+              </ul>
+              <div class="main-button">
+                <a th:href="">Xem chi tiết</a>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="pagination">
+            <li><a href="#">1</a></li>
+            <li><a class="is_active" href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">>></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">        
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script th:src="@{/web/js/jquery.min.js}"></script>
+  <script th:src="@{/web/js/bootstrap.min.js}"></script>
+  <script th:src="@{/web/js/isotope.min.js}"></script>
+  <script th:src="@{/web/js/owl-carousel.js}"></script>
+  <script th:src="@{/web/js/counter.js}"></script>
+  <script th:src="@{/web/js/custom.js}"></script>
+  </body>
+</html>

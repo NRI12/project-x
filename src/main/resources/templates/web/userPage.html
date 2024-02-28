@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Trang cá nhân</title>
+<link rel="stylesheet" th:href="@{/web/css/home.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap-grid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+<!-- navigation -->
+    <nav id="navigation" class="menu-nav navbar navbar-expand-lg bg-primary text-light w-100">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">
+                <img class="logo rounded img-fluid" src="img/thiet-ke-logo-nganh-du-lich-dich-vu-bee-art-07.jpg" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsible-navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-between" id="collapsible-navbar">
+                <ul class="navbar-nav nav col-5 d-flex justify-content-around">
+                    <li class="nav-item"><a class="nav-link text-light" href="">Khách Sạn</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="">Tours</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="">Vé Máy Bay</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="">Cẩm Nang Du Lịch</a></li>
+                </ul>
+                <div class="col-md-4 text-center text-light" th:if="${session.USERMODEL != null}">
+                    	Welcome, <a th:href=@{/user} style="color:rgb(215,215,215);text-decoration:none" th:text="${session.USERMODEL.getFullname}" ></a> | <a class="text-light" th:href="@{logout}" style="text-decoration: none;">Thoát</a>
+                    </div>
+                    <div class="col-md-2 text-center" th:if="${session.USERMODEL == null}">
+                    	<a class="text-light" th:href="@{login}" data-toggle="popover" data-placement="bottom" style="text-decoration: none;" data-content=""><i class="fa fa-user-circle px-2" aria-hidden="true"></i> Tài Khoản</a>
+                    </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="space"></div>
+
+    <!-- section -->
+    <div id="section" class="my-5 px-2">
+        <div id="user" class="row d-flex justify-content-around">
+            <div id="user-info" class="my-3" style="background-color: rgb(217, 217, 217);font-size: 20px;width: 400px">
+                <div class="mx-3 py-3">
+                    <h2 class="w-100 text-center">Tài khoản</h2><br/>
+                    <b>Họ và tên: </b><span th:text="${user.fullname}"></span><br/>
+                    <b>Email: </b><span th:text="${user.email}"></span><br/>
+                    <b>Số điện thoại: </b><span th:text="${user.phoneNum}"></span><br/>
+                    <b>Thành phố: </b><span th:text="${user.cityName}"></span>
+                </div>
+            </div>
+            <div id="user-booking" class="mx-4 my-3" style="background-color: rgb(241, 241, 241);width: 750px">
+                <h2 class="w-100 text-center">Tình trạng đặt phòng</h2><br/>
+                <div class="mx-2 my-1" style="background-color: rgb(255, 255, 255);">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Ngày đặt</th>
+                                <th>Checkin</th>
+                                <th>Checkout</th>
+                                <th>Người lớn</th>
+                                <th>Trẻ em</th>
+                                <th>Căn hộ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="booking : ${bookings}">
+                            	<td th:text="${booking.createdDate}"></td>
+                                <td th:text="${booking.checkinDate}"></td>
+                                <td th:text="${booking.checkoutDate}"></td>
+                                <td th:text="${booking.adultAmount}"></td>
+                                <td th:text="${booking.childAmount}"></td>
+                                <td th:text="${booking.departmentName}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- footer -->
+    <div id="footer" class="bg-dark text-light">
+        <div class="footer-content d-flex justify-content-evenly">
+            <div class="footer-column-info col-lg-3">
+                <b>CHĂM SÓC KHÁCH HÀNG</b>
+                <p style="margin-top: 20px">Liên hệ hỗ trợ</p> 
+                <p>Hệ thống cửa hàng</p> 
+                <p>Tin tuyển dụng</p> 
+            </div>
+            <div class="footer-column-info col-lg-3">
+                <b>HỖ TRỢ KHÁCH HÀNG</b>
+                <p style="margin-top: 20px">Chính sách bảo mật</p>
+                <p>Hướng dẫn đặt phòng</p>
+                <p>Phương thức thanh toán</p>
+                <p>Phương thức vận chuyển</p>
+                <p>Quy chế hoạt động</p>
+                <p>Câu hỏi thường gặp</p>
+            </div>
+            <div class="footer-column-info col-lg-4">
+                <b>PHƯƠNG THỨC THANH TOÁN</b>
+                <img class="my-2" src="img/payment.jpeg" alt=""><br>
+                <b>CẦN TRỢ GIÚP HÃY GỌI NGAY</b><br>
+                <div class="contact d-flex justify-content-start align-items-center" style="color:orange">
+                    <i class="fas fa-phone-alt"></i>
+                    <h2>1900 4108</h2>
+                </div>
+                <b>ĐẶT PHÒNG DỄ DÀNG HƠN QUA ỨNG DỤNG</b>
+                <div class="download" style="color:orange">
+                    <img src="img/tai-appstore.png" alt="">
+                    <img src="img/tai-google-play.png" alt="">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between">
+            <div class="mx-5">
+                <p>© 2023 GO GLOBAL</p>
+            </div>
+            <div class="mx-5 d-flex justify-content-around" style="width:100px">
+                <p>visit us</p>
+                <a href="https://www.facebook.com/yuire10602"><i class="fab fa-facebook-square text-secondary" style="font-size: 20px"></i></a>
+                <a href="https://www.instagram.com/_mnyuire_/"><i class="fab fa-instagram text-secondary" style="font-size: 20px"></i></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
